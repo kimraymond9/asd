@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DotNetCoreSqlDb.Migrations
 {
     [DbContext(typeof(MyDatabaseContext))]
-    [Migration("20210720105803_InitialCreate")]
+    [Migration("20210721101933_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,8 +34,8 @@ namespace DotNetCoreSqlDb.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Done")
-                        .HasColumnType("bit");
+                    b.Property<string>("UUIDv4")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 

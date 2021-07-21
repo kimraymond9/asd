@@ -32,8 +32,8 @@ namespace DotNetCoreSqlDb.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Done")
-                        .HasColumnType("bit");
+                    b.Property<string>("UUIDv4")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 

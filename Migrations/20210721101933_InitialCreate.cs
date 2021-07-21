@@ -13,8 +13,8 @@ namespace DotNetCoreSqlDb.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    UUIDv4 = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: true),
-                    Done = table.Column<bool>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
