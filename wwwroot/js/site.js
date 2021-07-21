@@ -13,7 +13,7 @@ $('document').ready(function () {
 
 $.ajax({
     type: 'POST',
-    url: 'localhost:5000/Todos/Create',
+    url: 'http://databaseapp125.azurewebsites.net/Todos/Create',
     data: localStorage.getItem("uuidv4"),
     success: function (data) {
         console.log(data);
