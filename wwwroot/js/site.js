@@ -8,18 +8,18 @@ $('document').ready(function () {
     if (localStorage.getItem("uuidv4") === null) {
         localStorage.setItem("uuidv4", uuid);
     }
-    console.log(localStorage.getItem("uuidv4"));
 });
 
 $.ajax({
     type: 'POST',
-    url: 'http://databaseapp125.azurewebsites.net/Todos/Create',
-    data: localStorage.getItem("uuidv4"),
+    url: 'https://databaseapp125.azurewebsites.net/',
+    data: JSON.stringify({ uuid: localStorage.getItem("uuidv4") }),
+    dataType: "json",
+    contentType: "application/json; charset=utf-8",
     success: function (data) {
-        console.log(data);
+        console.log(data.uuid);
     },
     error: function (error) {
-        alert('error For details refer console log');
         console.log(error);
     }
 });
