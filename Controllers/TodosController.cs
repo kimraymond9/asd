@@ -20,7 +20,9 @@ namespace DotNetCoreSqlDb.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Todo.ToListAsync());
+            return await Task.Run(() => {
+                return View(new List<Todo>());
+            });
         }
 
         // GET: Todos
@@ -28,7 +30,6 @@ namespace DotNetCoreSqlDb.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(string token)
         {
-            System.Diagnostics.Debug.WriteLine(token);
             var allTodos = await _context.Todo.ToListAsync();
             var clientTodos = allTodos.Where(todo => todo.Token == token).ToList();
             return View(clientTodos);
@@ -65,10 +66,8 @@ namespace DotNetCoreSqlDb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Token,Description,CreatedDate")] Todo todo)
         {
-            System.Diagnostics.Debug.WriteLine("hi");
             if (ModelState.IsValid)
             {
-                System.Diagnostics.Debug.WriteLine("hi");
                 _context.Add(todo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
