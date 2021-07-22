@@ -13,7 +13,7 @@ namespace DotNetCoreSqlDb.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UUIDv4 = table.Column<string>(nullable: false),
+                    Token = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false)
                 },

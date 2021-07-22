@@ -32,7 +32,7 @@ namespace DotNetCoreSqlDb.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UUIDv4")
+                    b.Property<string>("Token")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");

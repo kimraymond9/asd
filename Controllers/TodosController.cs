@@ -18,10 +18,20 @@ namespace DotNetCoreSqlDb.Controllers
             _context = context;
         }
 
-        // GET: Todos
         public async Task<IActionResult> Index()
         {
             return View(await _context.Todo.ToListAsync());
+        }
+
+        // GET: Todos
+        [Route("{token}")]
+        [HttpGet]
+        public async Task<IActionResult> Index(string token)
+        {
+            System.Diagnostics.Debug.WriteLine(token);
+            var allTodos = await _context.Todo.ToListAsync();
+            var clientTodos = allTodos.Where(todo => todo.Token == token).ToList();
+            return View(clientTodos);
         }
 
         // GET: Todos/Details/5
@@ -53,10 +63,12 @@ namespace DotNetCoreSqlDb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,UUIDv4,Description,CreatedDate")] Todo todo)
+        public async Task<IActionResult> Create([Bind("ID,Token,Description,CreatedDate")] Todo todo)
         {
+            System.Diagnostics.Debug.WriteLine("hi");
             if (ModelState.IsValid)
             {
+                System.Diagnostics.Debug.WriteLine("hi");
                 _context.Add(todo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -85,7 +97,7 @@ namespace DotNetCoreSqlDb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,UUIDv4,Description,CreatedDate")] Todo todo)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Token,Description,CreatedDate")] Todo todo)
         {
             if (id != todo.ID)
             {
