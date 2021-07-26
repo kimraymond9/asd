@@ -9,10 +9,21 @@ namespace DotNetCoreSqlDb.Models
         public string Token { get; set; }
         public string Description { get; set; }
 
-        [Display(Name = "Created Date")]
+        [Display(Name = "Date Added")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime CreatedDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime DateAdded { get; set; }
+
+        public Todo()
+        {
+            this.DateAdded = DateTime.UtcNow;
+        }
+
+        [Display(Name = "Due Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime DueDate { get; set; }
+
     }
 }
 

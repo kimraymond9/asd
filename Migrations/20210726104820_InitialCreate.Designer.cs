@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DotNetCoreSqlDb.Migrations
 {
     [DbContext(typeof(MyDatabaseContext))]
-    [Migration("20210722110037_InitialCreate")]
+    [Migration("20210726104820_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,11 +28,14 @@ namespace DotNetCoreSqlDb.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DueDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Token")
                         .HasColumnType("nvarchar(max)");

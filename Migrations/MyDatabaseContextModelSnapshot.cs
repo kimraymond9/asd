@@ -26,11 +26,14 @@ namespace DotNetCoreSqlDb.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DueDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Token")
                         .HasColumnType("nvarchar(max)");
