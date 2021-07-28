@@ -28,10 +28,37 @@ namespace DotNetCoreSqlDb.Controllers
         // GET: Todos
         [Route("{token}")]
         [HttpGet]
-        public async Task<IActionResult> Index(string token)
+        public async Task<IActionResult> Index(string token, string sortOrder)
         {
+            ViewData["AlphabeticalSort"] = sortOrder == "Description" ? "Description_Desc" : "Description";
+            ViewData["DateAddedSort"] = String.IsNullOrEmpty(sortOrder) ? "Date_Added_Desc" : "";
+            ViewData["DueDateSort"] = sortOrder == "DueDate" ? "Due_Date_Desc" : "DueDate";
+
             var allTodos = await _context.Todo.ToListAsync();
-            var clientTodos = allTodos.Where(todo => todo.Token == token).ToList();
+            var clientTodos = allTodos.Where(todo => todo.Token == token);
+
+            switch (sortOrder)
+            {
+                case "Description_Desc":
+                    clientTodos = clientTodos.OrderByDescending(s => s.Description).ToList();
+                    break;
+                case "Description":
+                    clientTodos = clientTodos.OrderBy(s => s.Description).ToList();
+                    break;
+                case "Due_Date_Desc":
+                    clientTodos = clientTodos.OrderByDescending(s => s.DueDate).ToList();
+                    break;
+                case "DueDate":
+                    clientTodos = clientTodos.OrderBy(s => s.DueDate).ToList();
+                    break;
+                case "Date_Added_Desc":
+                    clientTodos = clientTodos.OrderByDescending(s => s.DateAdded).ToList();
+                    break;
+                default:
+                    clientTodos = clientTodos.OrderBy(s => s.DateAdded).ToList();
+                    break;
+            }
+
             return View(clientTodos);
         }
 

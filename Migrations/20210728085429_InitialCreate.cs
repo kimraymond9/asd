@@ -14,7 +14,8 @@ namespace DotNetCoreSqlDb.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Token = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    DateAdded = table.Column<DateTime>(nullable: false),
                     DueDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>

@@ -6,28 +6,21 @@
 
     <h1>Todo List</h1>
 
+    <div class="create-button">
         <a asp-action="Create" class="btn btn-primary">Create New</a>
+    </div>
 
-    <span id="inline-right" class="btn-group">
-        <select class="custom-select">
-            <option value="" selected disabled>Sort</option>
-            <option value="">Alphabetical</option>
-            <option value="">Date Added</option>
-            <option value="">Due Date</option>
-        </select>
-    </span>
-
-    <table class="table">
-        <thead class="thead-dark">
+    <table class="table table-striped">
+        <thead>
             <tr>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.Description)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["AlphabeticalSort"]">@Html.DisplayNameFor(model => model.Description)</a> 
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.DateAdded)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateAddedSort"]">@Html.DisplayNameFor(model => model.DateAdded)</a> 
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.DueDate)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DueDateSort"]">@Html.DisplayNameFor(model => model.DueDate)</a> 
                 </th>
                 <th scope="col">
                     Options
@@ -46,10 +39,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.DueDate)
                 </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                <td id="buttons" class="btn-group" role="group">
+                    <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.ID">Edit</a> 
+                    <a class="btn btn-primary btn-sm" asp-action="Details" asp-route-id="@item.ID">Details</a>
+                    <a class="btn btn-primary btn-sm" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
                 </td>
             </tr>
 }
