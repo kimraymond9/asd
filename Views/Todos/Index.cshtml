@@ -10,17 +10,17 @@
         <a asp-action="Create" class="btn btn-primary">Create New</a>
     </div>
 
-    <table class="table table-striped">
+    <table onload="state()" class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["AlphabeticalSort"]">@Html.DisplayNameFor(model => model.Description)</a>
+                    <a id="description" asp-action="Index" asp-route-sortOrder="@ViewData["AlphabeticalSort"]">Description</a>
                 </th>
                 <th scope="col">
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateAddedSort"]">@Html.DisplayNameFor(model => model.DateAdded)</a>
+                    <a id="date-added" asp-action="Index" asp-route-sortOrder="@ViewData["DateAddedSort"]">Date Added ▼</a>
                 </th>
                 <th scope="col">
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DueDateSort"]">@Html.DisplayNameFor(model => model.DueDate)</a>
+                    <a id="due-date" asp-action="Index" asp-route-sortOrder="@ViewData["DueDateSort"]">Due Date</a>
                 </th>
                 <th scope="col">
                     Options

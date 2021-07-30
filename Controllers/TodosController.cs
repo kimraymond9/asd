@@ -32,7 +32,7 @@ namespace DotNetCoreSqlDb.Controllers
         {
             ViewData["AlphabeticalSort"] = sortOrder == "Description" ? "Description_Desc" : "Description";
             ViewData["DateAddedSort"] = String.IsNullOrEmpty(sortOrder) ? "Date_Added_Desc" : "";
-            ViewData["DueDateSort"] = sortOrder == "DueDate" ? "Due_Date_Desc" : "DueDate";
+            ViewData["DueDateSort"] = sortOrder == "Due_Date" ? "Due_Date_Desc" : "Due_Date";
 
             var allTodos = await _context.Todo.ToListAsync();
             var clientTodos = allTodos.Where(todo => todo.Token == token);
@@ -48,7 +48,7 @@ namespace DotNetCoreSqlDb.Controllers
                 case "Due_Date_Desc":
                     clientTodos = clientTodos.OrderByDescending(s => s.DueDate).ToList();
                     break;
-                case "DueDate":
+                case "Due_Date":
                     clientTodos = clientTodos.OrderBy(s => s.DueDate).ToList();
                     break;
                 case "Date_Added_Desc":
