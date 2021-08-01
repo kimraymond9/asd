@@ -53,8 +53,3 @@ $('#edit-form').submit(function () {
 $('#delete-form').submit(function () {
     $("#delete-token").val(localStorage.getItem("token"));
 });
-
-/*
-Date Added ▼
-Date Added ▲
-*/
